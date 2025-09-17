@@ -1,0 +1,62 @@
+services:
+  mail-usage-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - redis-mail-usage
+      - nats-mail-usage
+    environment:
+      - TZ=UTC
+    networks: [ mail-usage-net ]
+    command: >
+      python -m mail_domain_service.main
+
+  redis-mail-usage:
+    image: redis:7-alpine
+    container_name: redis-mail-usage
+    environment:
+      - TZ=UTC
+    networks: [ mail-usage-net ]
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+    command: [ "redis-server", "--save", "60", "1", "--loglevel", "warning" ]
+
+  nats-mail-usage:
+    image: nats:2.10-alpine
+    container_name: nats-mail-usage
+    command: [ "-js", "-m", "8222", "-V", "--store_dir", "/data" ]
+    environment:
+      - TZ=UTC
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    networks: [ mail-usage-net ]
+
+    volumes:
+      - nats-data:/data
+
+volumes:
+  redis-data:
+  nats-data:
+
+networks:
+  # for local testing
+  mail-usage-net:
+    name: mail-usage-net

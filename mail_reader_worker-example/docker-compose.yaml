@@ -1,0 +1,24 @@
+services:
+  mailreader-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mailreader-worker
+    env_file:
+      - .env
+    networks:
+      - mail-usage-net
+    environment:
+      - TZ=UTC
+
+    command: > 
+      taskiq worker app.taskiq.broker:broker app.taskiq.tasks --workers 4
+
+    restart: unless-stopped
+
+
+networks:
+  mail-usage-net:
+    # for local testing
+    external: true
+    name: mail-usage-net

@@ -1,0 +1,3 @@
+from mail_domain_service.infrastructure.database.db import async_session_maker_ctx, async_session_maker
+
+async_session_maker_ctx.set(async_session_maker)
