@@ -1,6 +1,6 @@
 from redis.asyncio import Redis
 
-from mail_reader_worker.app.schemas.mail import MailboxMessage
+from mail_reader_worker_example.app.schemas.mail import MailboxMessage
 
 
 class ResultPublisher:

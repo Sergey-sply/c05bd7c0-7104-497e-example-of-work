@@ -2,7 +2,6 @@ from typing import Optional
 
 from .client import get_redis
 from .result_publisher import ResultPublisher
-from ...config.settings import settings
 
 _publisher: Optional[ResultPublisher] = None
 

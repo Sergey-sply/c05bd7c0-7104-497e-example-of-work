@@ -1,8 +1,8 @@
-from mail_reader_worker.app.cache.redis.provider import get_publisher
-from mail_reader_worker.app.provider.base import MailProvider
-from mail_reader_worker.app.schemas.mail import Mailbox
-from mail_reader_worker.app.taskiq.broker import broker
-from mail_reader_worker.app.use_case.mail_fetch import GetLatestMail
+from mail_reader_worker_example.app.cache.redis.provider import get_publisher
+from mail_reader_worker_example.app.provider.base import MailProvider
+from mail_reader_worker_example.app.schemas.mail import Mailbox
+from mail_reader_worker_example.app.taskiq.broker import broker
+from mail_reader_worker_example.app.use_case.mail_fetch import GetLatestMail
 
 
 def provider_factory(provider_name: str) -> MailProvider:

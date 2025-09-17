@@ -1,7 +1,7 @@
 from redis.asyncio import Redis, ConnectionPool
 from typing import Optional
 
-from mail_reader_worker.app.config.settings import settings
+from mail_reader_worker_example.app.config.settings import settings
 
 _redis: Optional[Redis] = None
 

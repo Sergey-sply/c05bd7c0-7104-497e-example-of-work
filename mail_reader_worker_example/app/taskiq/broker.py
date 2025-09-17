@@ -4,9 +4,9 @@ from nats.js.api import StreamConfig
 from taskiq import TaskiqMiddleware
 from taskiq_nats import PullBasedJetStreamBroker
 
-from mail_reader_worker.app.cache.redis.client import init_redis, close_redis
-from mail_reader_worker.app.cache.redis.provider import reset_publisher
-from mail_reader_worker.app.config.settings import settings
+from mail_reader_worker_example.app.cache.redis.client import init_redis, close_redis
+from mail_reader_worker_example.app.cache.redis.provider import reset_publisher
+from mail_reader_worker_example.app.config.settings import settings
 
 log = logging.getLogger(__name__)
 

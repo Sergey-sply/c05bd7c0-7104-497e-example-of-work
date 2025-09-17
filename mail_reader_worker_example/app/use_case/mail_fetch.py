@@ -1,5 +1,5 @@
-from mail_reader_worker.app.provider.base import MailProvider
-from mail_reader_worker.app.schemas.mail import Mailbox
+from mail_reader_worker_example.app.provider.base import MailProvider
+from mail_reader_worker_example.app.schemas.mail import Mailbox
 
 
 class GetLatestMail:
